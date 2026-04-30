@@ -35,6 +35,16 @@ function App() {
     fetchWeather();
   }, [city]);
 
+  const weeklyData = [
+    { name: "Mon", icon: weatherIcons.clear, high: 35, low: 24 },
+    { name: "Tue", icon: weatherIcons.clouds, high: 31, low: 22 },
+    { name: "Wed", icon: weatherIcons.rain, high: 27, low: 21 },
+    { name: "Thu", icon: weatherIcons.atmosphere, high: 34, low: 23 },
+    { name: "Fri", icon: weatherIcons.snow, high: 30, low: 22 },
+    { name: "Sat", icon: weatherIcons.thunderstorm, high: 26, low: 20 },
+    { name: "Sun", icon: weatherIcons.drizzle, high: 33, low: 23 },
+  ];
+
   return (
     <div className="min-h-screen bg-black text-white">
       <nav className="flex items-center justify-between px-6 sm:px-6 py-4">
@@ -70,79 +80,208 @@ function App() {
       </div>
 
       <div className="px-4 mt-8 flex justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-5xl">
-          <div className="md:col-span-2 bg-zinc-900 backdrop-blur-md border border-white/10 p-4 rounded-lg space-y-4">
-            <div className="flex justify-between items-center gap-4">
-              <div className="flex items-center gap-2 min-w-0">
-                <span className="bg-zinc-500 p-1.5 sm:p-1.5 rounded-lg">
-                  <RiMapPinLine className="text-lg sm:text-2xl" />
-                </span>
-                <div>
-                  <h4 className="text-md sm:text-lg font-semibold">Manila</h4>
-                  <p className="text-xs sm:text-sm text-gray-400">PH</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-5xl pb-10">
+          <div className="flex flex-col gap-4 md:col-span-2">
+            <div className="bg-zinc-900 backdrop-blur-md border border-white/10 p-4 rounded-lg space-y-4">
+              <div className="flex justify-between items-center gap-4">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="bg-zinc-500 p-1.5 sm:p-1.5 rounded-lg">
+                    <RiMapPinLine className="text-lg sm:text-2xl" />
+                  </span>
+                  <div>
+                    <h4 className="text-md sm:text-lg font-semibold">Manila</h4>
+                    <p className="text-xs sm:text-sm text-gray-400">PH</p>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <h4 className="text-md sm:text-lg font-semibold">
+                    Tuesday, Apr 28
+                  </h4>
+                  <p className="text-xs sm:text-sm text-gray-400">4:39 PM</p>
                 </div>
               </div>
 
-              <div className="text-right">
-                <h4 className="text-md sm:text-lg font-semibold">
-                  Tuesday, Apr 28
-                </h4>
-                <p className="text-xs sm:text-sm text-gray-400">4:39 PM</p>
+              <div className="flex flex-col items-center sm:flex-row sm:justify-between">
+                <img
+                  src={weatherIcons.clouds}
+                  alt="weather-icon"
+                  className="w-32 h-32 sm:w-40 sm:h-40"
+                />
+                <div className="flex flex-col items-center">
+                  <h1 className="text-5xl sm:text-7xl font-bold">
+                    40<span className="text-2xl align-top">°C</span>
+                  </h1>
+                  <h3 className="text-base sm:text-lg font-semibold">Clouds</h3>
+                  <h3 className="text-sm text-gray-400">Few Clouds</h3>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
+                  <RiTempColdLine className="text-xl sm:text-2xl text-gray-200" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-xs text-gray-400">Feels Like</span>
+                    <span className="text-lg font-semibold">42°C</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
+                  <RiDropLine className="text-xl sm:text-2xl text-gray-200" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-xs text-gray-400">Humidity</span>
+                    <span className="text-lg font-semibold">78%</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
+                  <RiWindyLine className="text-xl sm:text-2xl text-gray-200" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-xs text-gray-400">Wind</span>
+                    <span className="text-lg font-semibold">12 km/h</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
+                  <RiDashboard3Line className="text-xl sm:text-2xl text-gray-200" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-xs text-gray-400">Pressure</span>
+                    <span className="text-lg font-semibold">1023 hPa</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-              <img
-                src={weatherIcons.clouds}
-                alt="weather-icon"
-                className="w-32 h-32 sm:w-40 sm:h-40"
-              />
-              <div className="flex flex-col items-center">
-                <h1 className="text-5xl sm:text-7xl font-bold">
-                  40<span className="text-2xl align-top">°C</span>
-                </h1>
-                <h3 className="text-base sm:text-lg font-semibold">Clouds</h3>
-                <h3 className="text-sm text-gray-400">Few Clouds</h3>
-              </div>
-            </div>
+            <div className="bg-zinc-900 backdrop-blur-md border border-white/10 rounded-lg p-4 space-y-4">
+              <h2 className="text-base sm:text-lg md:text-xl font-semibold">
+                Hourly Forecast
+              </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
-                <RiTempColdLine className="text-xl sm:text-2xl text-gray-200" />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-xs text-gray-400">Feels Like</span>
-                  <span className="text-lg font-semibold">42°C</span>
-                </div>
-              </div>
+              <div className="overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory scroll-px-4 -mx-4">
+                <div className="flex gap-2 px-4">
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
 
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
-                <RiDropLine className="text-xl sm:text-2xl text-gray-200" />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-xs text-gray-400">Humidity</span>
-                  <span className="text-lg font-semibold">78%</span>
-                </div>
-              </div>
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
 
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
-                <RiWindyLine className="text-xl sm:text-2xl text-gray-200" />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-xs text-gray-400">Wind</span>
-                  <span className="text-lg font-semibold">12 km/h</span>
-                </div>
-              </div>
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
 
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10">
-                <RiDashboard3Line className="text-xl sm:text-2xl text-gray-200" />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-xs text-gray-400">Pressure</span>
-                  <span className="text-lg font-semibold">1023 hPa</span>
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
+                    <span className="text-xs text-gray-400">6 AM</span>
+                    <img
+                      src={weatherIcons.clouds}
+                      alt="weather-icon"
+                      className=""
+                    />
+                    <span className="text-sm font-semibold">
+                      30<span className="text-xs align-top">°C</span>
+                    </span>
+                  </div>
+
+                  <div className="min-w-2 shrink-0" />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-zinc-900 backdrop-blur-md border border-white/10 p-4 rounded-lg">
-            Forecast Content
+          <div className="bg-zinc-900 backdrop-blur-md border border-white/10 p-4 rounded-lg space-y-4">
+            <h2 className="text-base sm:text-lg md:text-xl font-semibold">
+              7-Day Forecast
+            </h2>
+
+            {weeklyData.map((day) => (
+              <div
+                key={day.name}
+                className="flex items-center justify-between rounded-lg px-3 py-2 bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.02]"
+              >
+                <div className="flex flex-col gap-1 text-sm font-semibold">
+                  <span className="text-sm w-10">{day.name}</span>
+                  <span className="text-xs text-gray-400">Mostly cloudy</span>
+                </div>
+                <img src={day.icon} alt="weather-icon" className="w-10 h-10" />
+                <div className="flex flex-col gap-2 text-sm font-semibold leading-3">
+                  <span>{day.high}°C</span>
+                  <span className="text-gray-400">{day.low}°C</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
