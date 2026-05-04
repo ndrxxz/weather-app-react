@@ -8,13 +8,14 @@ import {
   RiTempColdLine,
   RiWindyLine,
 } from "react-icons/ri";
-import { weatherIcons } from "./weatherIcons";
+import { weatherIcons } from "./utils/weatherIcons";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState("");
 
-  const apiKey = `API_KEY`;
-  const city = "Manila";
+  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -35,6 +36,17 @@ function App() {
     fetchWeather();
   }, [city]);
 
+  const hourlyData = [
+    { time: "6 AM", icon: weatherIcons.clear, temp: 30 },
+    { time: "7 AM", icon: weatherIcons.clouds, temp: 31 },
+    { time: "8 AM", icon: weatherIcons.rain, temp: 35 },
+    { time: "9 AM", icon: weatherIcons.atmosphere, temp: 33 },
+    { time: "10 AM", icon: weatherIcons.snow, temp: 27 },
+    { time: "11 AM", icon: weatherIcons.thunderstorm, temp: 26 },
+    { time: "12 PM", icon: weatherIcons.drizzle, temp: 29 },
+    { time: "1 PM", icon: weatherIcons.clear, temp: 42 },
+  ];
+
   const weeklyData = [
     { name: "Mon", icon: weatherIcons.clear, high: 35, low: 24 },
     { name: "Tue", icon: weatherIcons.clouds, high: 31, low: 22 },
@@ -47,6 +59,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Navbar */}
       <nav className="flex items-center justify-between px-6 sm:px-6 py-4">
         <div className="text-xl sm:text-2xl font-bold text-white ">
           ⛅Weather App
@@ -57,26 +70,12 @@ function App() {
         </button>
       </nav>
 
+      {/* Hero */}
       <div className="flex flex-col items-center gap-6 sm:gap-8 px-4 text-center">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
           How's the sky looking today?
         </h1>
-
-        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full max-w-md">
-          <div className="relative w-full">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-4 z-10 pointer-events-none">
-              <RiSearchLine />
-            </span>
-            <input
-              type="text"
-              className="w-full pl-10 pr-4 py-2 bg-zinc-900 backdrop-blur-md border border-white/10  rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-gray-400 focus:outline-none shadow-md transition"
-              placeholder="Search..."
-            />
-          </div>
-          <button className="w-full sm:w-auto bg-zinc-600 hover:bg-zinc-500 rounded-lg px-5 py-2 transition shadow-md cursor-pointer">
-            Search
-          </button>
-        </div>
+        <SearchBar onSearch={setCity} />
       </div>
 
       <div className="px-4 mt-8 flex justify-center">
@@ -159,101 +158,19 @@ function App() {
 
               <div className="overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory scroll-px-4 -mx-4">
                 <div className="flex gap-2 px-4">
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10">
-                    <span className="text-xs text-gray-400">6 AM</span>
-                    <img
-                      src={weatherIcons.clouds}
-                      alt="weather-icon"
-                      className=""
-                    />
-                    <span className="text-sm font-semibold">
-                      30<span className="text-xs align-top">°C</span>
-                    </span>
-                  </div>
+                  {hourlyData.map((hour, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center min-w-24 snap-start rounded-lg p-3 bg-white/5 border border-white/10 transition-all duration-300 ease-out will-change-transform hover:bg-white/10"
+                    >
+                      <span className="text-xs text-gray-400">{hour.time}</span>
+                      <img src={hour.icon} alt="weather-icon" className="" />
+                      <span className="text-sm font-semibold">
+                        {hour.temp}
+                        <span className="text-xs align-top">°C</span>
+                      </span>
+                    </div>
+                  ))}
 
                   <div className="min-w-2 shrink-0" />
                 </div>
