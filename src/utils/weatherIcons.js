@@ -7,11 +7,11 @@ import snow from "./assets/svg/snow.svg";
 import thunderstorm from "./assets/svg/thunderstorm.svg";
 
 export const weatherIcons = {
-    atmosphere: atmosphere,
-    clear: clear,
-    clouds: clouds,
-    drizzle: drizzle,
-    rain: rain,
-    snow: snow,
-    thunderstorm: thunderstorm,
+  atmosphere: atmosphere,
+  clear: clear,
+  clouds: clouds,
+  drizzle: drizzle,
+  rain: rain,
+  snow: snow,
+  thunderstorm: thunderstorm,
 };
