@@ -1,4 +1,5 @@
 import { weatherIcons } from "../utils/weatherIcons";
+import { getWeatherType } from "../utils/getWeatherType";
 import {
   RiDashboard3Line,
   RiDropLine,
@@ -22,6 +23,30 @@ const StatCard = ({ icon: Icon, label, value }) => {
 export default function WeatherCard({ weather }) {
   if (!weather) return null;
 
+  const {
+    main: { feels_like, humidity, pressure, temp },
+    name: city,
+    sys: { country },
+    weather: [{ id, description, main }],
+    wind: { speed },
+  } = weather;
+
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString("en-US", {
+    weekday: "long",
+    day: "2-digit",
+    month: "short",
+  });
+
+  const time = now.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true
+  });
+
+  const weatherType = getWeatherType(id);
+  const weatherIcon = weatherIcons[weatherType];
+
   return (
     <div className="bg-zinc-900 backdrop-blur-md border border-white/10 p-4 rounded-lg space-y-4">
       <div className="flex justify-between items-center gap-4">
@@ -30,37 +55,46 @@ export default function WeatherCard({ weather }) {
             <RiMapPinLine className="text-lg sm:text-2xl" />
           </span>
           <div>
-            <h4 className="text-md sm:text-lg font-semibold">Manila</h4>
-            <p className="text-xs sm:text-sm text-gray-400">PH</p>
+            <h4 className="text-md sm:text-lg font-semibold">{city}</h4>
+            <p className="text-xs sm:text-sm text-gray-400">{country}</p>
           </div>
         </div>
 
         <div className="text-right">
-          <h4 className="text-md sm:text-lg font-semibold">Tuesday, Apr 28</h4>
-          <p className="text-xs sm:text-sm text-gray-400">4:39 PM</p>
+          <h4 className="text-md sm:text-lg font-semibold">{formattedDate}</h4>
+          <p className="text-xs sm:text-sm text-gray-400">{time}</p>
         </div>
       </div>
 
       <div className="flex flex-col items-center sm:flex-row sm:justify-between">
         <img
-          src={weatherIcons.clouds}
-          alt="weather-icon"
+          src={weatherIcon}
+          alt={weatherType}
           className="w-32 h-32 sm:w-40 sm:h-40"
         />
         <div className="flex flex-col items-center">
           <h1 className="text-5xl sm:text-7xl font-bold">
-            40<span className="text-2xl align-top">°C</span>
+            {`${Math.round(temp)}`}
+            <span className="text-2xl align-top">°C</span>
           </h1>
-          <h3 className="text-base sm:text-lg font-semibold">Clouds</h3>
-          <h3 className="text-sm text-gray-400">Few Clouds</h3>
+          <h3 className="text-base sm:text-lg font-semibold">{main}</h3>
+          <h3 className="text-sm text-gray-400 capitalize">{description}</h3>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-        <StatCard icon={RiTempColdLine} label="Feels Like" value="42°C" />
-        <StatCard icon={RiDropLine} label="Humidity" value="78%" />
-        <StatCard icon={RiWindyLine} label="Wind" value="12 km/h" />
-        <StatCard icon={RiDashboard3Line} label="Pressure" value="1023 hPa" />
+        <StatCard
+          icon={RiTempColdLine}
+          label="Feels Like"
+          value={`${Math.round(feels_like)}°C`}
+        />
+        <StatCard icon={RiDropLine} label="Humidity" value={`${humidity}%`} />
+        <StatCard icon={RiWindyLine} label="Wind" value={`${speed} km/h`} />
+        <StatCard
+          icon={RiDashboard3Line}
+          label="Pressure"
+          value={`${pressure} hPa`}
+        />
       </div>
     </div>
   );
