@@ -1,5 +1,4 @@
-import { weatherIcons } from "../utils/weatherIcons";
-import { getWeatherType } from "../utils/getWeatherType";
+import { weatherIcons, getWeatherType } from "@/utils";
 
 export default function HourlyForecast({ forecast }) {
   if (!forecast) return null;
