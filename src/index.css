@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant light (&:where(.light, .light *));
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
@@ -8,5 +10,5 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    
+    user-select: none;
 }

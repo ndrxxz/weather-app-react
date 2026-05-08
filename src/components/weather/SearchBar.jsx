@@ -26,13 +26,13 @@ export default function SearchBar({ onSearch }) {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="w-full pl-10 pr-4 py-2 bg-zinc-900 backdrop-blur-md border border-white/10  rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-gray-400 focus:outline-none shadow-md transition"
+          className="w-full pl-10 pr-4 py-2 bg-zinc-900 light:bg-white backdrop-blur-md border border-white/10 light:border-slate-200  rounded-lg text-white light:text-black placeholder-zinc-400 focus:ring-2 focus:ring-zinc-400 focus:outline-none shadow-md transition"
           placeholder="Search..."
         />
       </div>
       <button
         type="submit"
-        className="w-full sm:w-auto bg-zinc-600 hover:bg-zinc-500 rounded-lg px-5 py-2 transition shadow-md cursor-pointer"
+        className="w-full sm:w-auto bg-zinc-600 hover:bg-zinc-500 light:text-white rounded-lg px-5 py-2 transition shadow-md cursor-pointer"
       >
         Search
       </button>

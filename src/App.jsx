@@ -8,7 +8,7 @@ function App() {
   const { weather, forecast, notFound } = UseWeather(city);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-zinc-950 light:bg-slate-100 text-white light:text-black">
       {/* Navbar */}
       <Navbar />
 
