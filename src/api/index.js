@@ -1,0 +1,1 @@
+export { fetchWeather, fetchForecast } from "./fetchWeather";
