@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function HourlyForecastSkeleton() {
-  return (
-    <div></div>
-  )
+  return <div></div>;
 }
 
-export default HourlyForecastSkeleton
+export default HourlyForecastSkeleton;
