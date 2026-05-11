@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchBar } from "@/components";
+import { SearchBar } from "@/components/weather";
 
 function Hero({ setCity }) {
   return (

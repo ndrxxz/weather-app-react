@@ -1,4 +1,4 @@
-import { WeatherCard, HourlyForecast, WeeklyForecast } from "@/components"
+import { WeatherCard, HourlyForecast, WeeklyForecast } from "@/components/weather"
 
 function WeatherContent({ weather, forecast }) {
   return (
