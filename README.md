@@ -5,9 +5,9 @@ A responsive weather application built with React that provides real-time weathe
 - React
 - JavaScript
 - Tailwind CSS
-- Weather API integration
-- Vite
 - Tanstack Query
+- OpenWeatherMap API
+- Vite
 
 ## 🚀Features
 - Current weather conditions
