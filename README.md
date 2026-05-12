@@ -7,6 +7,7 @@ A responsive weather application built with React that provides real-time weathe
 - Tailwind CSS
 - Weather API integration
 - Vite
+- Tanstack Query
 
 ## 🚀Features
 - Current weather conditions
