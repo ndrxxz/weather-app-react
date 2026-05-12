@@ -1,1 +1,1 @@
-export { fetchWeather, fetchForecast } from "./fetchWeather";
+export { fetchWeather, fetchForecast } from "./FetchWeather";
