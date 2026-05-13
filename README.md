@@ -3,7 +3,7 @@ A responsive weather application built with React that provides real-time weathe
 
 ## ✨Technologies
 - React
-- JavaScript
+- TypeScript
 - Tailwind CSS
 - Tanstack Query
 - OpenWeatherMap API
