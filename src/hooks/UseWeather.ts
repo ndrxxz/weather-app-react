@@ -1,7 +1,7 @@
 import { fetchForecast, fetchWeather } from "@/api";
 import { useQueries } from "@tanstack/react-query";
 
-function UseWeather(city) {
+function UseWeather(city: string) {
   const [weatherQuery, forecastQuery] = useQueries({
     queries: [
       {

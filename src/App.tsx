@@ -7,7 +7,7 @@ import { Navbar } from "@/components/layout";
 import { Skeleton } from "@/components/common/skeletons";
 
 function App() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState<string>("");
   const { weather, forecast, isLoading, isError } = UseWeather(city);
 
   return (

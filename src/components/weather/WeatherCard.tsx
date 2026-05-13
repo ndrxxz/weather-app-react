@@ -36,7 +36,7 @@ export default function WeatherCard({ weather }) {
 
   const now = new Date();
   const formattedDate = now.toLocaleDateString("en-US", {
-    weekday: "long",
+    weekday: "short",
     day: "2-digit",
     month: "short",
   });
