@@ -1,1 +1,0 @@
-export { weatherIcons, getWeatherType } from "./weatherType";
