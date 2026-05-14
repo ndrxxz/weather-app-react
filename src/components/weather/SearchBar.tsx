@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RiSearchLine } from "react-icons/ri";
 
-export default function SearchBar({ onSearch }) {
-  const [input, setInput] = useState("");
+interface SearchProp {
+  onSearch: (city: string) => void;
+}
 
-  function handleSubmit(e) {
+export default function SearchBar({ onSearch }: SearchProp) {
+  const [input, setInput] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (input.trim()) {
@@ -12,6 +17,11 @@ export default function SearchBar({ onSearch }) {
       setInput("");
     }
   }
+
+  // Auto focus the search input when page loads
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <form
@@ -24,8 +34,11 @@ export default function SearchBar({ onSearch }) {
         </span>
         <input
           type="text"
+          ref={inputRef}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setInput(e.target.value)
+          }
           className="w-full pl-10 pr-4 py-2 bg-zinc-900 light:bg-white backdrop-blur-md border border-white/10 light:border-slate-200  rounded-lg text-white light:text-black placeholder-zinc-400 focus:ring-2 focus:ring-zinc-400 focus:outline-none shadow-md transition"
           placeholder="Search..."
         />
