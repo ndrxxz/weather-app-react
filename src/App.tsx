@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { UseWeather } from "@/hooks";
 import { searchNotFound, searchImg } from "@/assets";
 import { Hero, WeatherContent } from "@/components/weather";
@@ -10,13 +10,17 @@ function App() {
   const [city, setCity] = useState<string>("");
   const { weather, forecast, isLoading, isError } = UseWeather(city);
 
+  const handleSearch = useCallback((newCity: string) => {
+    setCity(newCity);
+  }, []);
+
   return (
     <div className="min-h-screen bg-zinc-950 light:bg-slate-100 text-white light:text-black">
       {/* Navbar */}
       <Navbar />
 
       {/* Hero */}
-      <Hero setCity={setCity} />
+      <Hero setCity={handleSearch} />
 
       {/* Content */}
       {!city ? (
